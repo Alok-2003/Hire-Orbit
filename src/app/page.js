@@ -4,7 +4,6 @@ import { redirect } from 'next/navigation';
 export default async function Home() {
 
   const user = await currentUser()
-  console.log(user,'currentuser')
     
   if (!user) return <div>Not signed in</div>;
 

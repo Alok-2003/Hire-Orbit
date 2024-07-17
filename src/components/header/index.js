@@ -1,3 +1,4 @@
+// src/components/header.js
 "use client";
 import React from "react";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
@@ -6,12 +7,12 @@ import { AlignJustify } from "lucide-react";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 
-export default function Header(user) {
+export default function Header({ user }) {
   const menuItems = [
     {
       label: "Home",
       path: "/",
-      show: "true",
+      show: true,
     },
     {
       label: "Login",
@@ -26,25 +27,27 @@ export default function Header(user) {
     {
       label: "Jobs",
       path: "/jobs",
-      show: user,
+      show: !!user,
     },
     {
       label: "Activity",
       path: "/activity",
-      show: user,
+      show: !!user,
     },
     {
       label: "Membership",
       path: "/membership",
-      show: user,
+      show: !!user,
     },
     {
       label: "Account",
       path: "/account",
-      show: user,
+      show: !!user,
     },
   ];
-console.log("user from header",user) 
+
+  // console.log(user)
+
   return (
     <div>
       <header className="flex h-16 w-full shrink-0 items-center">
@@ -56,13 +59,14 @@ console.log("user from header",user)
             </Button>
           </SheetTrigger>
           <SheetContent side="left">
-            <Link className="mr-6 hidden lg:flex " href={"#"}>
+            <Link className="mr-6 hidden lg:flex" href={"/"}>
               <h1 className="text-xl">Hire-Orbit</h1>
             </Link>
             <div className="grid gap-2 py-6">
-              {menuItems.map((menuItem) =>
+              {menuItems.map((menuItem, index) =>
                 menuItem.show ? (
                   <Link
+                    key={index}
                     href={menuItem.path}
                     className="flex w-full items-center py-2 text-lg font-semibold"
                   >
@@ -78,11 +82,12 @@ console.log("user from header",user)
           Hire-Orbit
         </Link>
         <nav className="ml-auto hidden lg:flex gap-6">
-          {menuItems.map((menuItem) =>
+          {menuItems.map((menuItem, index) =>
             menuItem.show ? (
               <Link
+                key={index}
                 href={menuItem.path}
-                className="group inline-flex h-9 w-max items-center rounded-md bg-white px-4 py-2 text-sm font-medium "
+                className="group inline-flex h-9 w-max items-center rounded-md bg-white px-4 py-2 text-sm font-medium"
               >
                 {menuItem.label}
               </Link>
