@@ -1,9 +1,8 @@
-import React from 'react'
+import OnBoard from "@/components/on-board";
+import React from "react";
 
-export default function page() {
+export default function OnBoardPage() {
   return (
-    <div>
-      <h1>This is our onboard page</h1>
-    </div>
-  )
+    <OnBoard/>
+  );
 }
