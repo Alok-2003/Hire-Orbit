@@ -23,7 +23,6 @@ export const initialRecrutierFormData = {
   name: "",
   companyName: "",
   companyRole: "",
-  isPremiumUser: false,
 };
 
 export const candidateOnboardFormControls = [
@@ -134,5 +133,4 @@ export const initialCandidateFormData = {
   graduatedYear: "",
   linkedinProfile: "",
   githubProfile: "",
-  isPremiumUser: false,
 };

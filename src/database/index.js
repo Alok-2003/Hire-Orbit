@@ -9,3 +9,6 @@ const connectToDb = async () => {
     .then(() => console.log("Job board database connected succesfully"))
     .catch((error) => console.log(error));
 };
+
+
+export default connectToDb;
