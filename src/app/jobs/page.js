@@ -8,4 +8,4 @@ async function JobsPage() {
   return <JobListing />;
 }
 
-export default Jobs;
+export default JobsPage;
