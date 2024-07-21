@@ -13,7 +13,7 @@ function PostNewJob({ profileInfo }) {
     companyName: profileInfo?.recruiterInfo?.companyName,
   });
 
-  console.log(jobFormData)
+  console.log(jobFormData);
 
   return (
     <div>
@@ -23,7 +23,16 @@ function PostNewJob({ profileInfo }) {
       >
         Post new job
       </Button>
-      <Dialog open={showJobDialog} onOpenChange={() => setShowJobDialog(false)}>
+      <Dialog
+        open={showJobDialog}
+        onOpenChange={() => {
+          setShowJobDialog(false);
+          setJobFormData({
+            ...initialPostNewJobFormData,
+            companyName: profileInfo?.recruiterInfo?.companyName,
+          });
+        }}
+      >
         <DialogContent className="sm:max-w-screen-md h-[600px] overflow-auto">
           <DialogHeader>
             <DialogTitle>Post New Job</DialogTitle>

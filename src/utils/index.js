@@ -1,3 +1,5 @@
+import qs from "query-string";
+
 export const recruiterOnboardFormControls = [
   {
     label: "Name",
@@ -14,7 +16,7 @@ export const recruiterOnboardFormControls = [
   {
     label: "Company Role",
     name: "companyRole",
-    placeholder: "Enter your role in company",
+    placeholder: "Enter your company role",
     componentType: "input",
   },
 ];
@@ -38,19 +40,19 @@ export const candidateOnboardFormControls = [
     componentType: "input",
   },
   {
-    label: "Current Company ",
+    label: "Current Company",
     name: "currentCompany",
     placeholder: "Enter your current company",
     componentType: "input",
   },
   {
-    label: "Current Job location",
+    label: "Current Job Location",
     name: "currentJobLocation",
     placeholder: "Enter your current job location",
     componentType: "input",
   },
   {
-    label: "Prefered Job location",
+    label: "Prefered Job Location",
     name: "preferedJobLocation",
     placeholder: "Enter your prefered job location",
     componentType: "input",
@@ -58,7 +60,7 @@ export const candidateOnboardFormControls = [
   {
     label: "Current Salary",
     name: "currentSalary",
-    placeholder: "Enter your current Salary",
+    placeholder: "Enter your current salary",
     componentType: "input",
   },
   {
@@ -76,11 +78,11 @@ export const candidateOnboardFormControls = [
   {
     label: "Previous Companies",
     name: "previousCompanies",
-    placeholder: "Enter your previous compaines",
+    placeholder: "Enter your previous companies",
     componentType: "input",
   },
   {
-    label: "Total experience",
+    label: "Total Experience",
     name: "totalExperience",
     placeholder: "Enter your total experience",
     componentType: "input",
@@ -88,11 +90,11 @@ export const candidateOnboardFormControls = [
   {
     label: "College",
     name: "college",
-    placeholder: "Enter your college name",
+    placeholder: "Enter your college",
     componentType: "input",
   },
   {
-    label: "College location",
+    label: "College Location",
     name: "collegeLocation",
     placeholder: "Enter your college location",
     componentType: "input",
@@ -104,15 +106,15 @@ export const candidateOnboardFormControls = [
     componentType: "input",
   },
   {
-    label: "LinkedIn Profile",
+    label: "Linkedin Profile",
     name: "linkedinProfile",
-    placeholder: "Enter your linkedin profile url",
+    placeholder: "Enter your linkedin profile",
     componentType: "input",
   },
   {
     label: "Github Profile",
     name: "githubProfile",
-    placeholder: "Enter your github profile url",
+    placeholder: "Enter your github profile",
     componentType: "input",
   },
 ];
@@ -125,8 +127,8 @@ export const initialCandidateFormData = {
   currentSalary: "",
   noticePeriod: "",
   skills: "",
-  currentComapany: "",
-  previousComapany: "",
+  currentCompany: "",
+  previousCompanies: "",
   totalExperience: "",
   college: "",
   collegeLocation: "",
@@ -135,58 +137,133 @@ export const initialCandidateFormData = {
   githubProfile: "",
 };
 
-export const postNewJobFormControls=[
+export const initialCandidateAccountFormData = {
+  name: "",
+  currentJobLocation: "",
+  preferedJobLocation: "",
+  currentSalary: "",
+  noticePeriod: "",
+  skills: "",
+  currentCompany: "",
+  previousCompanies: "",
+  totalExperience: "",
+  college: "",
+  collegeLocation: "",
+  graduatedYear: "",
+  linkedinProfile: "",
+  githubProfile: "",
+};
+
+export const postNewJobFormControls = [
   {
-    label:'Company Name',
-    nmae:'companyName',
-    placeholder:'Company Name',
-    componentType:'input',
-    disabled:true
+    label: "Company Name",
+    name: "companyName",
+    placeholder: "Company Name",
+    componentType: "input",
+    disabled: true,
   },
   {
-    label:'Title',
-    nmae:'title',
-    placeholder:'Job Title',
-    componentType:'input'
+    label: "Title",
+    name: "title",
+    placeholder: "Job Title",
+    componentType: "input",
   },
   {
-    label:'Type',
-    nmae:'type',
-    placeholder:'Job type',
-    componentType:'input'
+    label: "Type",
+    name: "type",
+    placeholder: "Job Type",
+    componentType: "input",
   },
   {
-    label:'Location',
-    nmae:'location',
-    placeholder:'Job location',
-    componentType:'input'
+    label: "Location",
+    name: "location",
+    placeholder: "Job Location",
+    componentType: "input",
   },
   {
-    label:'Experience',
-    nmae:'experience',
-    placeholder:'Experience needed',
-    componentType:'input'
+    label: "Experience",
+    name: "experience",
+    placeholder: "Experience",
+    componentType: "input",
   },
   {
-    label:'Description',
-    nmae:'description',
-    placeholder:'Job Description',
-    componentType:'input'
+    label: "Description",
+    name: "description",
+    placeholder: "Description",
+    componentType: "input",
   },
   {
-    label:'Skills',
-    nmae:'skills',
-    placeholder:'Skills required',
-    componentType:'input'
+    label: "Skills",
+    name: "skills",
+    placeholder: "Skills",
+    componentType: "input",
   },
-]
-export const initialPostNewJobFormData=
+];
+
+export const initialPostNewJobFormData = {
+  companyName: "",
+  title: "",
+  type: "",
+  location: "",
+  experience: "",
+  description: "",
+  skills: "",
+};
+
+export const filterMenuDataArray = [
   {
-    companyName:'',
-    title:'',
-    type:'',
-    location:'',
-    experience:'',
-    description:'',
-    skills:'',
+    id: "companyName",
+    label: "Company Name",
+  },
+  {
+    id: "title",
+    label: "Title",
+  },
+  {
+    id: "type",
+    label: "Type",
+  },
+  {
+    id: "location",
+    label: "Location",
+  },
+];
+
+export function formUrlQuery({ params, dataToAdd }) {
+  let currentURL = qs.parse(params);
+
+  if (Object.keys(dataToAdd).length > 0) {
+    Object.keys(dataToAdd).map((key) => {
+      if (dataToAdd[key].length === 0) delete currentURL[key];
+      else currentURL[key] = dataToAdd[key].join(",");
+    });
   }
+
+  return qs.stringifyUrl(
+    {
+      url: window.location.pathname,
+      query: currentURL,
+    },
+    {
+      skipNull: true,
+    }
+  );
+}
+
+export const membershipPlans = [
+  {
+    heading: "Tier 1",
+    price: 100,
+    type: "basic",
+  },
+  {
+    heading: "Tier 2",
+    price: 1000,
+    type: "teams",
+  },
+  {
+    heading: "Tier 3",
+    price: 5000,
+    type: "enterprise",
+  },
+];
