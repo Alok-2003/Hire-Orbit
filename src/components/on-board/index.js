@@ -5,7 +5,7 @@ import CommonForm from "../common-form";
 import {
   candidateOnboardFormControls,
   initialCandidateFormData,
-  initialRecrutierFormData,
+  initialRecruiterFormData,
   recruiterOnboardFormControls,
 } from "@/utils";
 import { useUser } from "@clerk/nextjs";
@@ -14,7 +14,7 @@ import { createProfileAction } from "@/actions";
 export default function OnBoard() {
   const [currentTab, setCurrentTab] = useState("candidate");
   const [recruiterFormData, setRecruiterFormData] = useState(
-    initialRecrutierFormData
+    initialRecruiterFormData
   );
   const [candidateFormData, setCandidateFormData] = useState(
     initialCandidateFormData

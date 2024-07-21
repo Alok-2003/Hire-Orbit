@@ -12,7 +12,7 @@ export default async function Home() {
 
   return (
     <section>
-      Main Content,Hello {user?.firstName}
+      Main Content,Hello {user?.firstName},<br/> {profileInfo?.recruiterInfo?.companyName}
     </section>
   );
 }

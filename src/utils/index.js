@@ -19,7 +19,7 @@ export const recruiterOnboardFormControls = [
   },
 ];
 
-export const initialRecrutierFormData = {
+export const initialRecruiterFormData = {
   name: "",
   companyName: "",
   companyRole: "",
@@ -140,7 +140,8 @@ export const postNewJobFormControls=[
     label:'Company Name',
     nmae:'companyName',
     placeholder:'Company Name',
-    componentType:'input'
+    componentType:'input',
+    disabled:true
   },
   {
     label:'Title',
@@ -179,7 +180,7 @@ export const postNewJobFormControls=[
     componentType:'input'
   },
 ]
-export const postNewJobFormData=
+export const initialPostNewJobFormData=
   {
     companyName:'',
     title:'',

@@ -13,7 +13,11 @@ function JobListing(user, profileInfo) {
               : "Jobs Dashboard"}
           </h1>
           <div className="flex items-centre">
-            {profileInfo?.role === "candidate" ? <p>Filter</p> : <PostNewJob />}
+            {profileInfo?.role === "candidate" ? (
+              <p>Filter</p>
+            ) : (
+              <PostNewJob profileInfo={profileInfo} />
+            )}
           </div>
         </div>
         <div>Job Listing</div>
