@@ -41,11 +41,11 @@ export default function OnBoard() {
 
   async function createProfile() {
     const data = {
-      recrutierInfo: recruiterFormData,
+      userId: user?.id,
       role: "recruiter",
       isPremiumUser: false,
-      userId: user?.id,
       email: user?.primaryEmailAddress.emailAddress,
+      recrutierInfo: recruiterFormData,
     };
     await createProfileAction(data, "/onboard");
   }

@@ -18,7 +18,7 @@ export default function CommonForm({
     switch (getCurrentControl.componentType) {
       case "input":
         content = (
-          <div className="relative felx items-center mt-8">
+          <div className="relative flex items-center mt-8">
             <Input
               type="text"
               disabled={getCurrentControl.disabled}

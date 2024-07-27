@@ -2,7 +2,8 @@
 
 import PostNewJob from "../post-new-job";
 
-function JobListing(user, profileInfo) {
+function JobListing({user, profileInfo}) {
+    
   return (
     <div>
       <div className="mx-auto max-w-7xl">
@@ -16,11 +17,12 @@ function JobListing(user, profileInfo) {
             {profileInfo?.role === "candidate" ? (
               <p>Filter</p>
             ) : (
-              <PostNewJob profileInfo={profileInfo} />
+              <PostNewJob user={user} profileInfo={profileInfo} />
             )}
           </div>
         </div>
-        <div>Job Listing</div>
+        <div className="text-2xl font-bold" >Job Listing</div>
+        {profileInfo?.recrutierInfo?.companyName}
       </div>
     </div>
   );
