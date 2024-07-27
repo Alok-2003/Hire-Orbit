@@ -17,11 +17,12 @@ async function JobsPage() {
       : await fetchJobsForRecruiterAction(user?.id);
 
   console.log(jobList);
-  
+
   return (
     <JobListing
       user={JSON.parse(JSON.stringify(user))}
       profileInfo={profileInfo}
+      jobList={jobList}
     />
   );
 }
