@@ -14,24 +14,23 @@ const ProfileSchema= new mongoose.Schema({
         companyName:String,
         companyRole:String
     },
-    candidateInfo:{
-        resume:String,
-        name:String,
-        currentJobLocation:String,
-        preferedJobLocation:String,
-        currentSalary:String,
-        noticePeriod:String,
-        skills:String,
-        currentCompany:String,
-        previousCompany:String,
-        totalExperience:String,
-        college:String,
-        collegeLocation:String,
-        graduatedYear:String,
-        linkedinProfile:String,
-        githubProfile:String,
-    }
-
+    candidateInfo: {
+        name: String,
+        currentJobLocation: String,
+        preferedJobLocation: String,
+        currentSalary: String,
+        noticePeriod: String,
+        skills: String,
+        currentCompany: String,
+        previousCompany: String,
+        totalExperience: String,
+        college: String,
+        collegeLocation: String,
+        graduatedYear: String,
+        linkedinProfile: String,
+        githubProfile: String,
+        resume: String,
+      },
 })
 
 const Profile= mongoose.models.Profile || mongoose.model('Profile',ProfileSchema);

@@ -77,7 +77,7 @@ export const candidateOnboardFormControls = [
   },
   {
     label: "Previous Companies",
-    name: "previousCompanies",
+    name: "previousCompany",
     placeholder: "Enter your previous companies",
     componentType: "input",
   },
@@ -128,7 +128,7 @@ export const initialCandidateFormData = {
   noticePeriod: "",
   skills: "",
   currentCompany: "",
-  previousCompanies: "",
+  previousCompany: "",
   totalExperience: "",
   college: "",
   collegeLocation: "",
@@ -145,7 +145,7 @@ export const initialCandidateAccountFormData = {
   noticePeriod: "",
   skills: "",
   currentCompany: "",
-  previousCompanies: "",
+  previousCompany: "",
   totalExperience: "",
   college: "",
   collegeLocation: "",
@@ -210,60 +210,60 @@ export const initialPostNewJobFormData = {
   skills: "",
 };
 
-export const filterMenuDataArray = [
-  {
-    id: "companyName",
-    label: "Company Name",
-  },
-  {
-    id: "title",
-    label: "Title",
-  },
-  {
-    id: "type",
-    label: "Type",
-  },
-  {
-    id: "location",
-    label: "Location",
-  },
-];
+// export const filterMenuDataArray = [
+//   {
+//     id: "companyName",
+//     label: "Company Name",
+//   },
+//   {
+//     id: "title",
+//     label: "Title",
+//   },
+//   {
+//     id: "type",
+//     label: "Type",
+//   },
+//   {
+//     id: "location",
+//     label: "Location",
+//   },
+// ];
 
-export function formUrlQuery({ params, dataToAdd }) {
-  let currentURL = qs.parse(params);
+// export function formUrlQuery({ params, dataToAdd }) {
+//   let currentURL = qs.parse(params);
 
-  if (Object.keys(dataToAdd).length > 0) {
-    Object.keys(dataToAdd).map((key) => {
-      if (dataToAdd[key].length === 0) delete currentURL[key];
-      else currentURL[key] = dataToAdd[key].join(",");
-    });
-  }
+//   if (Object.keys(dataToAdd).length > 0) {
+//     Object.keys(dataToAdd).map((key) => {
+//       if (dataToAdd[key].length === 0) delete currentURL[key];
+//       else currentURL[key] = dataToAdd[key].join(",");
+//     });
+//   }
 
-  return qs.stringifyUrl(
-    {
-      url: window.location.pathname,
-      query: currentURL,
-    },
-    {
-      skipNull: true,
-    }
-  );
-}
+//   return qs.stringifyUrl(
+//     {
+//       url: window.location.pathname,
+//       query: currentURL,
+//     },
+//     {
+//       skipNull: true,
+//     }
+//   );
+// }
 
-export const membershipPlans = [
-  {
-    heading: "Tier 1",
-    price: 100,
-    type: "basic",
-  },
-  {
-    heading: "Tier 2",
-    price: 1000,
-    type: "teams",
-  },
-  {
-    heading: "Tier 3",
-    price: 5000,
-    type: "enterprise",
-  },
-];
+// export const membershipPlans = [
+//   {
+//     heading: "Tier 1",
+//     price: 100,
+//     type: "basic",
+//   },
+//   {
+//     heading: "Tier 2",
+//     price: 1000,
+//     type: "teams",
+//   },
+//   {
+//     heading: "Tier 3",
+//     price: 5000,
+//     type: "enterprise",
+//   },
+// ];

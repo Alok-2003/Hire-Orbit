@@ -6,20 +6,36 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import CommonForm from "../common-form";
 import { initialPostNewJobFormData, postNewJobFormControls } from "@/utils";
 import { postNewJobAction } from "@/actions";
+import { useToast } from "@/components/ui/use-toast";
+import Link from "next/link";
 
-function PostNewJob({user, profileInfo }) {
+function PostNewJob({ profileInfo, user, jobList }) {
+  console.log(jobList, "jobList");
   const [showJobDialog, setShowJobDialog] = useState(false);
   const [jobFormData, setJobFormData] = useState({
     ...initialPostNewJobFormData,
-    companyName: profileInfo?.recrutierInfo?.companyName,
+    companyName: profileInfo?.recruiterInfo?.companyName,
   });
 
-  console.log(jobFormData);
+  const { toast } = useToast();
 
-  function handlePostNewBtnValid() {
-    return Object.keys(jobFormData).every(
-      (control) => jobFormData[control].trim() !== ""
-    );
+ function handlePostNewBtnValid() {
+  return Object.keys(jobFormData).every(
+    (control) => typeof jobFormData[control] === 'string' && jobFormData[control].trim() !== ""
+  );
+}
+
+
+  function handleAddNewJob() {
+    if (!profileInfo?.isPremiumUser && jobList.length >= 2) {
+      toast({
+        variant: "destructive",
+        title: "You can post max 2 jobs.",
+        description: "Please opt for membership to post more jobs",
+      });
+      return;
+    }
+    setShowJobDialog(true);
   }
 
   async function createNewJob() {
@@ -34,7 +50,7 @@ function PostNewJob({user, profileInfo }) {
 
     setJobFormData({
       ...initialPostNewJobFormData,
-      companyName: profileInfo?.recrutierInfo?.companyName,
+      companyName: profileInfo?.recruiterInfo?.companyName,
     });
     setShowJobDialog(false);
   }
@@ -42,10 +58,10 @@ function PostNewJob({user, profileInfo }) {
   return (
     <div>
       <Button
+        onClick={handleAddNewJob}
         className="disabled:opacity-60 flex h-11 items-center justify-center px-5"
-        onClick={() => setShowJobDialog(true)}
       >
-        Post New Job
+        Post A Job
       </Button>
       <Dialog
         open={showJobDialog}
@@ -53,7 +69,7 @@ function PostNewJob({user, profileInfo }) {
           setShowJobDialog(false);
           setJobFormData({
             ...initialPostNewJobFormData,
-            companyName: profileInfo?.recrutierInfo?.companyName,
+            companyName: profileInfo?.recruiterInfo?.companyName,
           });
         }}
       >

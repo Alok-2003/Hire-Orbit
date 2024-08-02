@@ -99,6 +99,7 @@ export default function OnBoard() {
           };
 
     await createProfileAction(data, "/onboard");
+    console.log(data)
   }
 
   return (

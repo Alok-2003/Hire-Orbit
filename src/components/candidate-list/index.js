@@ -10,9 +10,9 @@ import {
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseClient = createClient(
-    "https://nnlmhyuccbvpycvuvjum.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ubG1oeXVjY2J2cHljdnV2anVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIwNzYxNTgsImV4cCI6MjAzNzY1MjE1OH0.TeyfCG82cBw2y63q9j_7nklEto8djOVC5zx2TDEpDrU"
-  );
+  "https://nnlmhyuccbvpycvuvjum.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ubG1oeXVjY2J2cHljdnV2anVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIwNzYxNTgsImV4cCI6MjAzNzY1MjE1OH0.TeyfCG82cBw2y63q9j_7nklEto8djOVC5zx2TDEpDrU"
+);
 
 function CandidateList({
   jobApplications,
@@ -124,15 +124,19 @@ function CandidateList({
             <div className="flex items-center gap-4 mt-6">
               <h1 className="dark:text-white">Previous Companies</h1>
               <div className="flex flex-wrap items-center gap-4 mt-6">
-                {currentCandidateDetails?.candidateInfo?.previousCompanies
-                  .split(",")
-                  .map((skillItem) => (
-                    <div className="w-[100px] dark:bg-white flex justify-center items-center h-[35px] bg-black rounded-[4px]">
-                      <h2 className="text-[13px]  dark:text-black font-medium text-white">
-                        {skillItem}
-                      </h2>
-                    </div>
-                  ))}
+                {currentCandidateDetails?.candidateInfo?.previousCompany &&
+                  currentCandidateDetails.candidateInfo.previousCompany
+                    .split(",")
+                    .map((skillItem, index) => (
+                      <div
+                        key={index}
+                        className="w-[100px] dark:bg-white flex justify-center items-center h-[35px] bg-black rounded-[4px]"
+                      >
+                        <h2 className="text-[13px] dark:text-black font-medium text-white">
+                          {skillItem.trim()}
+                        </h2>
+                      </div>
+                    ))}
               </div>
             </div>
             <div className="flex flex-wrap gap-4 mt-6">
