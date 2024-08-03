@@ -1,8 +1,19 @@
 "use client";
 
+import { filterMenuDataArray } from "@/utils";
 import CandidateJobCard from "../candidate-job-card";
 import PostNewJob from "../post-new-job";
 import RecruiterJobCard from "../recruiter-job-card";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarTrigger,
+} from "../ui/menubar";
+import { Label } from "../ui/label";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 function JobListing({
   user,
@@ -11,6 +22,16 @@ function JobListing({
   jobApplications,
   filterCategories,
 }) {
+
+  const [filterParams, setFilterParams] = useState({});
+
+  const filterMenus = filterMenuDataArray.map((item) => ({
+    id: item.id,
+    name: item.label,
+    options: [
+      ...new Set(filterCategories.map((listItem) => listItem[item.id])),
+    ],
+  }));
   return (
     <div>
       <div className="mx-auto max-w-7xl">
@@ -22,7 +43,37 @@ function JobListing({
           </h1>
           <div className="flex items-centre">
             {profileInfo?.role === "candidate" ? (
-              <p>Filter</p>
+              <Menubar>
+                {filterMenus.map((filterMenu) => (
+                  <MenubarMenu>
+                    <MenubarTrigger>{filterMenu.name}</MenubarTrigger>
+                    <MenubarContent>
+                      {filterMenu.options.map((option, optionIdx) => (
+                        <MenubarItem
+                          key={optionIdx}
+                          className="flex items-center"
+                          onClick={() => handleFilter(filterMenu.id, option)}
+                        >
+                          <div
+                            className={`h-4 w-4 dark:border-white border rounded border-gray-900 ${
+                              filterParams &&
+                              Object.keys(filterParams).length > 0 &&
+                              filterParams[filterMenu.id] &&
+                              filterParams[filterMenu.id].indexOf(option) > -1
+                                ? "bg-black dark:bg-white"
+                                : ""
+                            } `}
+                          />
+
+                          <Label className="ml-3 dark:text-white cursor-pointer text-sm text-gray-600">
+                            {option}
+                          </Label>
+                        </MenubarItem>
+                      ))}
+                    </MenubarContent>
+                  </MenubarMenu>
+                ))}
+              </Menubar>
             ) : (
               <PostNewJob user={user} profileInfo={profileInfo} />
             )}

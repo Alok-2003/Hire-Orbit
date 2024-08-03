@@ -24,7 +24,7 @@ async function JobsPage({ searchParams }) {
       ? await fetchJobApplicationsForCandidate(user?.id)
       : await fetchJobApplicationsForRecruiter(user?.id);
 
-  // const fetchFilterCategories = await createFilterCategoryAction();
+  const fetchFilterCategories = await createFilterCategoryAction();
 
   return (
     <JobListing
@@ -32,7 +32,7 @@ async function JobsPage({ searchParams }) {
       profileInfo={profileInfo}
       jobList={jobList}
       jobApplications={getJobApplicationList}
-      // filterCategories={fetchFilterCategories}
+      filterCategories={fetchFilterCategories}
     />
   );
 }

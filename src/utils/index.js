@@ -210,24 +210,24 @@ export const initialPostNewJobFormData = {
   skills: "",
 };
 
-// export const filterMenuDataArray = [
-//   {
-//     id: "companyName",
-//     label: "Company Name",
-//   },
-//   {
-//     id: "title",
-//     label: "Title",
-//   },
-//   {
-//     id: "type",
-//     label: "Type",
-//   },
-//   {
-//     id: "location",
-//     label: "Location",
-//   },
-// ];
+export const filterMenuDataArray = [
+  {
+    id: "companyName",
+    label: "Company Name",
+  },
+  {
+    id: "title",
+    label: "Title",
+  },
+  {
+    id: "type",
+    label: "Type",
+  },
+  {
+    id: "location",
+    label: "Location",
+  },
+];
 
 // export function formUrlQuery({ params, dataToAdd }) {
 //   let currentURL = qs.parse(params);

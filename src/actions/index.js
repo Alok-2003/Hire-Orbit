@@ -116,3 +116,11 @@ export async function getCandidateDetailsByIDAction(currentCandidateID) {
 
   return JSON.parse(JSON.stringify(result));
 }
+
+//create filter categories
+export async function createFilterCategoryAction() {
+  await connectToDb();
+  const result = await Job.find({});
+
+  return JSON.parse(JSON.stringify(result));
+}
