@@ -122,3 +122,40 @@ export async function createFilterCategoryAction() {
 
   return JSON.parse(JSON.stringify(result));
 }
+
+//update profile action
+export async function updateProfileAction(data, pathToRevalidate) {
+  await connectToDb();
+  const {
+    userId,
+    role,
+    email,
+    isPremiumUser,
+    memberShipType,
+    memberShipStartDate,
+    memberShipEndDate,
+    recrutierInfo,
+    candidateInfo,
+    _id,
+  } = data;
+
+  await Profile.findOneAndUpdate(
+    {
+      _id: _id,
+    },
+    {
+      userId,
+      role,
+      email,
+      isPremiumUser,
+      memberShipType,
+      memberShipStartDate,
+      memberShipEndDate,
+      recrutierInfo,
+      candidateInfo,
+    },
+    { new: true }
+  );
+
+  revalidatePath(pathToRevalidate);
+}
