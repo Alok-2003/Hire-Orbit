@@ -20,6 +20,11 @@ export default function Header({ user,profileInfo }) {
       show: !user,
     },
     {
+      label: "Feed",
+      path: "/feed",
+      show: profileInfo,
+    },
+    {
       label: "Register",
       path: "/sign-up",
       show: !user,
@@ -33,6 +38,11 @@ export default function Header({ user,profileInfo }) {
       label: "Jobs",
       path: "/jobs",
       show: !!user,
+    },
+    {
+      label: "Companies",
+      path: "/companies",
+      show: profileInfo?.role === 'candidate', 
     },
     {
       label: "Membership",

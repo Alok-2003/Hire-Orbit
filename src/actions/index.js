@@ -1,5 +1,6 @@
 "use server";
 
+import Feed from "@/components/feed";
 import connectToDb from "@/database";
 import Application from "@/models/application";
 import Job from "@/models/job";
@@ -203,4 +204,40 @@ export async function createStripePaymentAction(data) {
     success: true,
     id: session?.id,
   };
+}
+
+//create post action
+export async function createFeedPostAction(data, pathToRevalidate) {
+  await connectToDb();
+  await Feed.create(data);
+  revalidatePath(pathToRevalidate);
+}
+
+//fetch all posts action
+export async function fetchAllFeedPostsAction() {
+  await connectToDb();
+  const result = await Feed;
+  console.log("result",result)
+  return JSON.parse(JSON.stringify(result));
+}
+
+//update post action
+export async function updateFeedPostAction(data, pathToRevalidate) {
+  await connectToDb();
+  const { userId, userName, message, image, likes, _id } = data;
+  await Feed.findOneAndUpdate(
+    {
+      _id: _id,
+    },
+    {
+      userId,
+      userName,
+      image,
+      message,
+      likes,
+    },
+    { new: true }
+  );
+
+  revalidatePath(pathToRevalidate);
 }
