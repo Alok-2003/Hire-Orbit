@@ -20,7 +20,7 @@ import { useToast } from "../ui/use-toast";
 
 function CandidateJobCard({ jobItem, profileInfo, jobApplications }) {
   const [showJobDetailsDrawer, setShowJobDetailsDrawer] = useState(false);
-  console.log(jobApplications, "jobApplications");
+  // console.log(jobApplications, "jobApplications");
   const { toast } = useToast();
 
   async function handlejobApply() {

@@ -37,17 +37,15 @@ export async function fetchJobsForRecruiterAction(id) {
   return JSON.parse(JSON.stringify(result));
 }
 //candidate
-export async function fetchJobsForCandidateAction(
-  // filterParams = {}
-) {
+export async function fetchJobsForCandidateAction(filterParams = {}) {
   await connectToDb();
-  // let updatedParams = {};
-  // Object.keys(filterParams).forEach((filterKey) => {
-  //   updatedParams[filterKey] = { $in: filterParams[filterKey].split(",") };
-  // });
-  // console.log(updatedParams, "updatedParams");
+  let updatedParams = {};
+  Object.keys(filterParams).forEach((filterKey) => {
+    updatedParams[filterKey] = { $in: filterParams[filterKey].split(",") };
+  });
+  console.log(updatedParams, "updatedParams");
   const result = await Job.find(
-    // filterParams && Object.keys(filterParams).length > 0 ? updatedParams : {}
+    filterParams && Object.keys(filterParams).length > 0 ? updatedParams : {}
   );
 
   return JSON.parse(JSON.stringify(result));
