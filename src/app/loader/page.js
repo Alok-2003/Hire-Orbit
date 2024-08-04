@@ -1,9 +1,8 @@
-import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
-import "./loader.css";
+import "../loader.css";
 export default function Loading() {
   return (
-    <div className="flex justify-center items-center min-h-[100vh] bg-white ">
+    <div className="flex justify-center items-center min-h-[80vh] bg-white ">
       <div>
         <div
           aria-label="Orange and tan hamster running in a metal wheel"
@@ -27,10 +26,12 @@ export default function Loading() {
           </div>
           <div class="spoke"></div>
         </div>
-        
-<div class="loader">
-   <div data-glitch="Loading..." class="glitch">Loading...</div>
-</div>
+
+        <div class="loader">
+          <div data-glitch="Loading..." class="glitch">
+            Loading...
+          </div>
+        </div>
       </div>
     </div>
   );
