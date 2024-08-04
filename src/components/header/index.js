@@ -92,7 +92,7 @@ export default function Header({ user, profileInfo }) {
                 fill={theme === "dark" ? "light" : "dark"}
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               />
-              <UserButton afterSignOutUrl="/" />
+              {/* <UserButton afterSignOutUrl="/" /> */}
             </div>
           </SheetContent>
         </Sheet>
@@ -117,7 +117,7 @@ export default function Header({ user, profileInfo }) {
             fill={theme === "dark" ? "light" : "dark"}
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
           />
-          {/* <UserButton className="z-50" afterSignOutUrl="/" /> */}
+          <UserButton className="z-50" afterSignOutUrl="/" />
         </nav>
       </header>
     </div>
