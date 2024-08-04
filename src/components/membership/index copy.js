@@ -1,6 +1,8 @@
 "use client";
 
 import { membershipPlans } from "@/utils";
+import CommonCard from "../common-card";
+import JobIcon from "../job-icon";
 import { Button } from "../ui/button";
 import {
   createPriceIdAction,
@@ -64,7 +66,7 @@ function Membership({ profileInfo }) {
             ? 2
             : 5,
           new Date().getMonth(),
-          new Date().getDate()
+          new Date().getDay()
         ),
       },
       "/membership"
@@ -78,9 +80,9 @@ function Membership({ profileInfo }) {
   console.log(profileInfo);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="flex items-end dark:border-white justify-between border-b pb-2 pt-1 lg:pt-14">
-        <h1 className="lg:text-4xl text-[29px] font-bold dark:text-white tracking-tight text-gray-950">
+    <div className="mx-auto max-w-7xl">
+      <div className="flex items-baseline dark:border-white justify-between border-b pb-6 pt-24">
+        <h1 className="text-4xl font-bold dark:text-white tracking-tight text-gray-950">
           {profileInfo?.isPremiumUser
             ? "You are a premium user"
             : "Choose Your Best Plan"}
@@ -97,53 +99,39 @@ function Membership({ profileInfo }) {
           ) : null}
         </div>
       </div>
-      <div className="py-20 pb-10 pt-4">
-        <div className=" w-full mx-auto space-y-8">
-          <div className="grid grid-cols-1 gap-x-6 gap-y-4 lg:grid-cols-3">
+      <div className="py-20 pb-24 pt-6">
+        <div className="container mx-auto p-0 space-y-8">
+          <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
             {membershipPlans.map((plan, index) => (
-              <div
-                key={index}
-                className="border rounded-lg p-6 shadow-lg transform transition duration-300 ease-in-out hover:scale-105"
-              >
-                <div className="flex justify-between items-center">
-                  <h1 className="font-bold text-2xl">{plan.heading}</h1>
-                </div>
-                <p className="mt-4 text-3xl font-bold">₹{plan.price}/month</p>
-                <ul className="mt-4 space-y-2">
-                  <li className="flex items-center">
-                    <svg
-                      className="w-6 h-6 text-green-500"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
-                    </svg>
-                    <span className="ml-2">For {plan.type}</span>
-                  </li>
-                </ul>
-                {profileInfo?.memberShipType === "enterprise" ||
-                (profileInfo?.memberShipType === "basic" && index === 0) ||
-                (profileInfo?.memberShipType === "teams" &&
+              <CommonCard
+                icon={
+                  <div className="flex justify-between">
+                    <div>
+                      <JobIcon />
+                    </div>
+                    <h1 className="font-bold text-2xl dark:text-black">{plan.heading}</h1>
+                  </div>
+                }
+                title={`$ ${plan.price} /yr`}
+                description={plan.type}
+                footerContent={
+                  profileInfo?.memberShipType === "enterprise" ||
+                  (profileInfo?.memberShipType === "basic" && index === 0) ||
+                  (profileInfo?.memberShipType === "teams" &&
                   index >= 0 &&
-                  index < 2) ? null : (
-                  <Button
-                    onClick={() => handlePayment(plan)}
-                    className="mt-6 w-full disabled:opacity-65 dark:bg-[#fffa27] flex h-11 items-center justify-center px-5"
-                  >
-                    {profileInfo?.memberShipType === "basic" ||
-                    profileInfo?.memberShipType === "teams"
-                      ? "Update Plan"
-                      : "Get Premium"}
-                  </Button>
-                )}
-              </div>
+                  index < 2 ? null : (
+                    <Button
+                      onClick={() => handlePayment(plan)}
+                      className="disabled:opacity-65 dark:bg-[#fffa27] flex h-11 items-center justify-center px-5"
+                    >
+                      {profileInfo?.memberShipType === "basic" ||
+                      profileInfo?.memberShipType === "teams"
+                        ? "Update Plan"
+                        : "Get Premium"}
+                    </Button>
+                  ))
+                }
+              />
             ))}
           </div>
         </div>

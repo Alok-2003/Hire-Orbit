@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import CommonForm from "../common-form";
 import { updateProfileAction } from "@/actions";
+import { UserButton } from "@clerk/nextjs";
 
 function AccountInfo({ profileInfo }) {
   const [candidateFormData, setCandidateFormData] = useState(
@@ -66,12 +67,14 @@ function AccountInfo({ profileInfo }) {
 
   return (
     <div className="mx-auto max-w-7xl">
-      <div className="flex items-baseline dark:border-white justify-between pb-6 border-b pt-24">
-        <h1 className="text-4xl font-bold dark:text-white tracking-tight text-gray-950">
+      <div className="flex items-baseline dark:border-white justify-between pb-2 border-b pt-4 lg:pt-14">
+        <h1 className="lg:text-4xl text-3xl font-bold dark:text-white tracking-tight text-gray-950">
           Account Details
         </h1>
+        <UserButton className="z-50" afterSignOutUrl="/" />
+
       </div>
-      <div className="py-20 pb-24 pt-6">
+      <div className=" pb-10 pt-0">
         <div className="container mx-auto p-0 space-y-8">
           <CommonForm
             action={handleUpdateAccount}

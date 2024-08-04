@@ -103,11 +103,11 @@ export default function OnBoard() {
   }
 
   return (
-    <div className="bg-white">
+    <div className="">
       <Tabs value={currentTab} onValueChange={handleTabChange}>
         <div className="w-full">
-          <div className="flex items-baseline justify-between border-b pb-6 pt-16">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900">
+          <div className="lg:flex items-end justify-between border-b pb-2 lg:pt-8">
+            <h1 className="lg:text-4xl text-3xl pb-3 lg:pb-0 font-bold tracking-tight dark:text-white text-gray-900">
               Welcome to onboarding
             </h1>
             <TabsList>
