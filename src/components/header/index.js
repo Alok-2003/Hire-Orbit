@@ -21,11 +21,11 @@ export default function Header({ user, profileInfo }) {
       path: "/sign-in",
       show: !user,
     },
-    {
-      label: "Feed",
-      path: "/feed",
-      show: profileInfo,
-    },
+    // {
+    //   label: "Feed",
+    //   path: "/feed",
+    //   show: profileInfo,
+    // },
     {
       label: "Register",
       path: "/sign-up",
@@ -72,7 +72,7 @@ export default function Header({ user, profileInfo }) {
           </SheetTrigger>
           <SheetContent side="left">
             <Link className="mr-6 hidden lg:flex" href={"/"}>
-              <h1 className="text-xl">Hire-Orbit</h1>
+              <h1 className="text-xl">Hire Orbit</h1>
             </Link>
             <div className="grid gap-2 py-6">
               {menuItems.map((menuItem, index) =>
@@ -80,14 +80,15 @@ export default function Header({ user, profileInfo }) {
                   <Link
                     key={index}
                     href={menuItem.path}
-                    className="flex w-full items-center py-2 text-lg font-semibold"
+                    className="flex w-full items-center py-3 text-2xl font-semibold"
                   >
                     {menuItem.label}
                   </Link>
                 ) : null
               )}
+              
               <Moon
-                className="cursor-pointer mb-4"
+                className="cursor-pointer  mt-3 mb-6"
                 fill={theme === "dark" ? "light" : "dark"}
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               />
@@ -96,7 +97,7 @@ export default function Header({ user, profileInfo }) {
           </SheetContent>
         </Sheet>
         <Link className="hidden lg:flex mr-6 text-3xl font-bold" href={"/"}>
-          Hire-Orbit
+          Hire Orbit
         </Link>
         <nav className="ml-auto hidden lg:flex gap-6 items-center">
           {menuItems.map((menuItem, index) =>
