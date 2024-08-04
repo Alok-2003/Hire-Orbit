@@ -7,6 +7,7 @@
 - Membership Plans
 - Payment Functionality
 - Responsive for desktop and mobile
+- Added Vercel web analytics
 
 ### Candidate Features
 - Create and update profiles with a resume in "Account"
