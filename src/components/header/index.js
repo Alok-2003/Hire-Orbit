@@ -3,11 +3,13 @@
 import React from "react";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
-import { AlignJustify } from "lucide-react";
+import { AlignJustify, Moon } from "lucide-react";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
+import { useTheme } from "next-themes";
 
-export default function Header({ user,profileInfo }) {
+export default function Header({ user, profileInfo }) {
+  const { theme, setTheme } = useTheme();
   const menuItems = [
     {
       label: "Home",
@@ -32,7 +34,7 @@ export default function Header({ user,profileInfo }) {
     {
       label: "Activity",
       path: "/activity",
-      show: profileInfo?.role === 'candidate',
+      show: profileInfo?.role === "candidate",
     },
     {
       label: "Jobs",
@@ -42,7 +44,7 @@ export default function Header({ user,profileInfo }) {
     {
       label: "Companies",
       path: "/companies",
-      show: profileInfo?.role === 'candidate', 
+      show: profileInfo?.role === "candidate",
     },
     {
       label: "Membership",
@@ -84,6 +86,11 @@ export default function Header({ user,profileInfo }) {
                   </Link>
                 ) : null
               )}
+              <Moon
+                className="cursor-pointer mb-4"
+                fill={theme === "dark" ? "light" : "dark"}
+                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              />
               <UserButton afterSignOutUrl="/" />
             </div>
           </SheetContent>
@@ -91,19 +98,24 @@ export default function Header({ user,profileInfo }) {
         <Link className="hidden lg:flex mr-6 text-3xl font-bold" href={"/"}>
           Hire-Orbit
         </Link>
-        <nav className="ml-auto hidden lg:flex gap-6">
+        <nav className="ml-auto hidden lg:flex gap-6 items-center">
           {menuItems.map((menuItem, index) =>
             menuItem.show ? (
               <Link
                 key={index}
                 href={menuItem.path}
-                onClick={()=> sessionStorage.removeItem('filterParams')}
-                className="group inline-flex h-9 w-max items-center rounded-md bg-white px-4 py-2 text-sm font-medium"
+                onClick={() => sessionStorage.removeItem("filterParams")}
+                className="group inline-flex h-9 w-max items-center rounded-md  px-4 py-2 text-sm font-medium"
               >
                 {menuItem.label}
               </Link>
             ) : null
           )}
+          <Moon
+            className="cursor-pointer"
+            fill={theme === "dark" ? "light" : "dark"}
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          />
           <UserButton afterSignOutUrl="/" />
         </nav>
       </header>

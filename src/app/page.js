@@ -13,7 +13,7 @@ async function Home() {
 
   return (
     <Fragment>
-      <section className="relative w-full h-full min-h-screen pb-10">
+      <section className="relative w-full h-full min-h-full ">
         <div className="w-full h-full relative">
           <div className="flex flex-col-reverse lg:flex-row gap-10 mt-16">
             <section className="w-full lg:w-[50%] flex flex-col md:px-2 lg:px-0 p-5 lg:p-10">

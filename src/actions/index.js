@@ -216,7 +216,7 @@ export async function createFeedPostAction(data, pathToRevalidate) {
 //fetch all posts action
 export async function fetchAllFeedPostsAction() {
   await connectToDb();
-  const result = await Feed;
+  const result = await Feed.find({});
   console.log("result",result)
   return JSON.parse(JSON.stringify(result));
 }
