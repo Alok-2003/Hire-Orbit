@@ -7,6 +7,8 @@ import { AlignJustify, Moon } from "lucide-react";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
+import GradualSpacing from "@/components/magicui/gradual-spacing";
+
 
 export default function Header({ user, profileInfo }) {
   const { theme, setTheme } = useTheme();
@@ -71,16 +73,17 @@ export default function Header({ user, profileInfo }) {
             </Button>
           </SheetTrigger>
           <SheetContent side="left">
-            <Link className="mr-6 hidden lg:flex" href={"/"}>
-              <h1 className="text-xl">Hire Orbit</h1>
-            </Link>
-            <div className="grid gap-2 py-6">
+            {/* <Link className="mr-6 hidden lg:flex" href={"/"}>
+            </Link> */}
+            <h1 className="text-3xl font-bold">Hire Orbit</h1>
+
+            <div className="grid gap-1 py-4">
               {menuItems.map((menuItem, index) =>
                 menuItem.show ? (
                   <Link
                     key={index}
                     href={menuItem.path}
-                    className="flex w-full items-center py-3 text-2xl font-semibold"
+                    className="flex w-full items-center py-3 text-xl  font-semibold"
                   >
                     {menuItem.label}
                   </Link>
@@ -97,7 +100,7 @@ export default function Header({ user, profileInfo }) {
           </SheetContent>
         </Sheet>
         <Link className="hidden lg:flex mr-6 text-3xl font-bold" href={"/"}>
-          Hire Orbit
+        <GradualSpacing text="Hire Orbit"/>
         </Link>
         <nav className="ml-auto hidden lg:flex gap-6 items-center">
           {menuItems.map((menuItem, index) =>

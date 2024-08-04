@@ -5,6 +5,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { Fragment } from "react";
 import IconCloud from "@/components/magicui/icon-cloud";
+import TypingAnimation from "@/components/magicui/typing-animation";
 
 async function Home() {
   const user = await currentUser();
@@ -75,12 +76,16 @@ async function Home() {
                 <span className="flex space-x-2">
                   <span className=" w-14 mb-2 hidden lg:block dark:border-white border-b-2 border-gray-700"></span>
                   <span className="font-medium hidden lg:block dark:text-white text-gray-600">
-                     Your Gateway to Stellar Careers
+                    <TypingAnimation
+                      className="text-xl"
+                      text="Your Gateway to Stellar Careers"
+                    />
                   </span>
                 </span>
-                <h1 className="text-3xl dark:text-white mt-5 lg:text-7xl text-black font-extrabold">
-                  Launch Your Career into Orbit with Hire Orbit
-                </h1>
+                  <TypingAnimation
+                    className="text-3xl text-left dark:text-white mt-5 lg:text-7xl text-black font-extrabold"
+                    text="Launch Your Career into Orbit with Hire Orbit"
+                  />
                 <p className="mt-4 text-lg dark:text-gray-300 hidden lg:block text-gray-700">
                   Explore opportunities across top global and Indian companies.
                   Whether you're a recent graduate or a seasoned professional,
