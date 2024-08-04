@@ -18,8 +18,8 @@ function CandidateActivity({ jobList, jobApplicants }) {
   return (
     <div className="mx-auto max-w-7xl">
       <Tabs defaultValue="Applied" className="w-full">
-        <div className="flex items-baseline dark:border-white justify-between border-b pb-6 pt-24">
-          <h1 className="text-4xl font-bold dark:text-white tracking-tight text-gray-950">
+        <div className="flex items-end  dark:border-white justify-between border-b pb-6 pt-6 lg:pt-14">
+          <h1 className="lg:text-4xl  text-center text-2xl font-bold dark:text-white tracking-tight text-gray-950">
             Your Activity
           </h1>
           <TabsList>

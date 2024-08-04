@@ -109,7 +109,7 @@ function Membership({ profileInfo }) {
                     <div>
                       <JobIcon />
                     </div>
-                    <h1 className="font-bold text-2xl">{plan.heading}</h1>
+                    <h1 className="font-bold text-2xl dark:text-black">{plan.heading}</h1>
                   </div>
                 }
                 title={`$ ${plan.price} /yr`}

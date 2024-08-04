@@ -34,8 +34,8 @@ function Companies({ jobsList }) {
 
   return (
     <div className="mx-auto max-w-7xl">
-      <div className="flex items-baseline dark:border-white justify-between border-b pb-6 pt-24">
-        <h1 className="text-4xl dark:text-white font-bold tracking-tight text-gray-900">
+      <div className="flex items-baseline dark:border-white justify-between border-b pb-6 pt-3 lg:pt-10">
+        <h1 className="lg:text-4xl text-3xl dark:text-white font-bold tracking-tight text-gray-900">
           Browse Companies
         </h1>
       </div>
@@ -43,7 +43,7 @@ function Companies({ jobsList }) {
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-3">
           <div className="lg:col-span-4">
             <div className="container mx-auto p-0 space-y-8">
-              <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-x-4  lg:grid-cols-3">
                 {createUniqueSetOfCompanies &&
                 createUniqueSetOfCompanies.length > 0 ? (
                   createUniqueSetOfCompanies.map((companyName) => (

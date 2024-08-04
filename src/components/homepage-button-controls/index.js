@@ -12,7 +12,7 @@ function HomepageButtonControls({ user, profileInfo }) {
   }, []);
 
   return (
-    <div className="flex justify-between w-full lg:space-x-4 ">
+    <div className="flex justify-between w-full lg:w-fit lg:space-x-4 ">
       <Button
         onClick={() => router.push("/jobs")}
         className="flex h-11 items-center justify-center px-5"
