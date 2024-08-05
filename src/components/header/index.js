@@ -23,11 +23,11 @@ export default function Header({ user, profileInfo }) {
       path: "/sign-in",
       show: !user,
     },
-    // {
-    //   label: "Feed",
-    //   path: "/feed",
-    //   show: profileInfo,
-    // },
+    {
+      label: "Feed",
+      path: "/feed",
+      show: profileInfo,
+    },
     {
       label: "Register",
       path: "/sign-up",

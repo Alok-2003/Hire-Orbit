@@ -14,7 +14,6 @@ const supabaseClient = createClient(
     "https://nnlmhyuccbvpycvuvjum.supabase.co",
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ubG1oeXVjY2J2cHljdnV2anVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIwNzYxNTgsImV4cCI6MjAzNzY1MjE1OH0.TeyfCG82cBw2y63q9j_7nklEto8djOVC5zx2TDEpDrU"
   );
-  
 
 function Feed({ user, profileInfo, allFeedPosts }) {
   const [showPostDialog, setShowPostDialog] = useState(false);
