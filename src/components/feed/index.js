@@ -61,7 +61,7 @@ function Feed({ user, profileInfo, allFeedPosts }) {
       {
         userId: user?.id,
         userName:
-          profileInfo?.candidateInfo?.name || profileInfo?.recruiterInfo?.name,
+          profileInfo?.candidateInfo?.name || profileInfo?.recrutierInfo?.name,
         message: formData?.message,
         image: formData?.imageURL,
         likes: [],
@@ -85,7 +85,7 @@ function Feed({ user, profileInfo, allFeedPosts }) {
       cpyLikesFromCurrentFeedPostItem.push({
         reactorUserId: user?.id,
         reactorUserName:
-          profileInfo?.candidateInfo?.name || profileInfo?.recruiterInfo?.name,
+          profileInfo?.candidateInfo?.name || profileInfo?.recrutierInfo?.name,
       });
     else cpyLikesFromCurrentFeedPostItem.splice(index, 1);
 
