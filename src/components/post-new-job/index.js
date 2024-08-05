@@ -14,7 +14,7 @@ function PostNewJob({ profileInfo, user, jobList }) {
   const [showJobDialog, setShowJobDialog] = useState(false);
   const [jobFormData, setJobFormData] = useState({
     ...initialPostNewJobFormData,
-    companyName: profileInfo?.recruiterInfo?.companyName,
+    companyName: profileInfo?.recrutierInfo?.companyName,
   });
 
   const { toast } = useToast();
@@ -50,7 +50,7 @@ function PostNewJob({ profileInfo, user, jobList }) {
 
     setJobFormData({
       ...initialPostNewJobFormData,
-      companyName: profileInfo?.recruiterInfo?.companyName,
+      companyName: profileInfo?.recrutierInfo?.companyName,
     });
     setShowJobDialog(false);
   }
@@ -69,7 +69,7 @@ function PostNewJob({ profileInfo, user, jobList }) {
           setShowJobDialog(false);
           setJobFormData({
             ...initialPostNewJobFormData,
-            companyName: profileInfo?.recruiterInfo?.companyName,
+            companyName: profileInfo?.recrutierInfo?.companyName,
           });
         }}
       >

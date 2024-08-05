@@ -1,9 +1,9 @@
 "use server";
 
-import Feed from "@/components/feed";
 import connectToDb from "@/database";
 import Application from "@/models/application";
 import Job from "@/models/job";
+import Post from "@/models/post";
 import Profile from "@/models/profile";
 import { revalidatePath } from "next/cache";
 
@@ -209,14 +209,14 @@ export async function createStripePaymentAction(data) {
 //create post action
 export async function createFeedPostAction(data, pathToRevalidate) {
   await connectToDb();
-  await Feed.create(data);
+  await Post.create(data);
   revalidatePath(pathToRevalidate);
 }
 
 //fetch all posts action
 export async function fetchAllFeedPostsAction() {
   await connectToDb();
-  const result = await Feed.find({});
+  const result = await Post.find({});
   console.log("result",result)
   return JSON.parse(JSON.stringify(result));
 }
@@ -225,7 +225,7 @@ export async function fetchAllFeedPostsAction() {
 export async function updateFeedPostAction(data, pathToRevalidate) {
   await connectToDb();
   const { userId, userName, message, image, likes, _id } = data;
-  await Feed.findOneAndUpdate(
+  await Post.findOneAndUpdate(
     {
       _id: _id,
     },
