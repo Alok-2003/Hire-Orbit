@@ -11,9 +11,9 @@ import { createClient } from "@supabase/supabase-js";
 import { createFeedPostAction, updateFeedPostAction } from "@/actions";
 
 const supabaseClient = createClient(
-    "https://nnlmhyuccbvpycvuvjum.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ubG1oeXVjY2J2cHljdnV2anVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIwNzYxNTgsImV4cCI6MjAzNzY1MjE1OH0.TeyfCG82cBw2y63q9j_7nklEto8djOVC5zx2TDEpDrU"
-  );
+  "https://nnlmhyuccbvpycvuvjum.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ubG1oeXVjY2J2cHljdnV2anVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIwNzYxNTgsImV4cCI6MjAzNzY1MjE1OH0.TeyfCG82cBw2y63q9j_7nklEto8djOVC5zx2TDEpDrU"
+);
 
 function Feed({ user, profileInfo, allFeedPosts }) {
   const [showPostDialog, setShowPostDialog] = useState(false);
@@ -27,7 +27,8 @@ function Feed({ user, profileInfo, allFeedPosts }) {
     event.preventDefault();
     setImageData(event.target.files[0]);
   }
-
+  console.log(formData);
+  console.log(imageData);
   function handleFetchImagePublicUrl(getData) {
     const { data } = supabaseClient.storage
       .from("job-board-public")
@@ -43,17 +44,22 @@ function Feed({ user, profileInfo, allFeedPosts }) {
   }
 
   async function handleUploadImageToSupabase() {
+    const sanitizedFileName = imageData?.name.replace(/\s+/g, '_');
     const { data, error } = await supabaseClient.storage
       .from("job-board-public")
-      .upload(`/public/${imageData?.name}`, imageData, {
+      .upload(`/public/${sanitizedFileName}`, imageData, {
         cacheControl: "3600",
         upsert: false,
       });
-
+  
     console.log(data, error);
 
     if (data) handleFetchImagePublicUrl(data);
   }
+
+  useEffect(() => {
+    if (imageData) handleUploadImageToSupabase();
+  }, [imageData]);
 
   async function handleSaveFeedPost() {
     await createFeedPostAction(
@@ -92,11 +98,7 @@ function Feed({ user, profileInfo, allFeedPosts }) {
     await updateFeedPostAction(getCurrentFeedPostItem, "/feed");
   }
 
-  useEffect(() => {
-    if (imageData) handleUploadImageToSupabase();
-  }, [imageData]);
-
-  console.log(allFeedPosts);
+  // console.log(allFeedPosts);
 
   return (
     <Fragment>
