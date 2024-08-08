@@ -3,7 +3,9 @@ import mongoose from "mongoose";
 const PostSchema = new mongoose.Schema({
   userId: String,
   userName: String,
-  message: String,
+  // message: String,
+  heading: String,
+  content: String,
   image: String,
   likes: [
     {

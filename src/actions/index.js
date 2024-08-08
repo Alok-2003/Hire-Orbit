@@ -209,6 +209,7 @@ export async function createStripePaymentAction(data) {
 //create post action
 export async function createFeedPostAction(data, pathToRevalidate) {
   await connectToDb();
+  console.log(data)
   await Post.create(data);
   revalidatePath(pathToRevalidate);
 }
@@ -217,7 +218,7 @@ export async function createFeedPostAction(data, pathToRevalidate) {
 export async function fetchAllFeedPostsAction() {
   await connectToDb();
   const result = await Post.find({});
-  console.log("result",result)
+  // console.log("result",result)
   return JSON.parse(JSON.stringify(result));
 }
 

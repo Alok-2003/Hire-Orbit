@@ -18,8 +18,9 @@ const supabaseClient = createClient(
 function Feed({ user, profileInfo, allFeedPosts }) {
   const [showPostDialog, setShowPostDialog] = useState(false);
   const [formData, setFormData] = useState({
-    message: "",
     imageURL: "",
+    heading: "",
+    content: "",
   });
   const [imageData, setImageData] = useState(null);
 
@@ -27,14 +28,11 @@ function Feed({ user, profileInfo, allFeedPosts }) {
     event.preventDefault();
     setImageData(event.target.files[0]);
   }
-  console.log(formData);
-  console.log(imageData);
+
   function handleFetchImagePublicUrl(getData) {
     const { data } = supabaseClient.storage
       .from("job-board-public")
       .getPublicUrl(getData.path);
-
-    console.log(data);
 
     if (data)
       setFormData({
@@ -51,9 +49,7 @@ function Feed({ user, profileInfo, allFeedPosts }) {
         cacheControl: "3600",
         upsert: false,
       });
-  
-    console.log(data, error);
-
+console.log(data)
     if (data) handleFetchImagePublicUrl(data);
   }
 
@@ -67,7 +63,8 @@ function Feed({ user, profileInfo, allFeedPosts }) {
         userId: user?.id,
         userName:
           profileInfo?.candidateInfo?.name || profileInfo?.recrutierInfo?.name,
-        message: formData?.message,
+        heading: formData?.heading,
+        content: formData?.content,
         image: formData?.imageURL,
         likes: [],
       },
@@ -76,7 +73,8 @@ function Feed({ user, profileInfo, allFeedPosts }) {
 
     setFormData({
       imageURL: "",
-      message: "",
+      heading: "",
+      content: "",
     });
   }
 
@@ -98,8 +96,7 @@ function Feed({ user, profileInfo, allFeedPosts }) {
     await updateFeedPostAction(getCurrentFeedPostItem, "/feed");
   }
 
-  // console.log(allFeedPosts);
-
+  console.log(formData)
   return (
     <Fragment>
       <div className="mx-auto max-w-7xl">
@@ -136,7 +133,10 @@ function Feed({ user, profileInfo, allFeedPosts }) {
                       {feedPostItem?.userName}
                     </span>
                     <h3 className="mb-6 text-4xl font-bold text-gray-900">
-                      {feedPostItem?.message}
+                      {feedPostItem?.heading}
+                    </h3>
+                    <h3 className="mb-6 text-2xl text-gray-900">
+                      {feedPostItem?.content}
                     </h3>
                     <div className="flex gap-5">
                       <Heart
@@ -167,22 +167,35 @@ function Feed({ user, profileInfo, allFeedPosts }) {
         onOpenChange={() => {
           setShowPostDialog(false);
           setFormData({
-            message: "",
+            heading: "",
+            content: "",
             imageURL: "",
           });
         }}
       >
         <DialogContent className="h-[550px]">
           <Textarea
-            name="message"
-            value={formData?.message}
+            name="heading"
+            value={formData?.heading}
             onChange={(event) =>
               setFormData({
                 ...formData,
-                message: event.target.value,
+                heading: event.target.value,
               })
             }
-            placeholder="What do you want to talk about?"
+            placeholder="Heading"
+            className="border-none outline-none focus-visible:ring-0 focus-visible:ring-offset-0 h-[200px] text-[28px]"
+          />
+          <Textarea
+            name="content"
+            value={formData?.content}
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                content: event.target.value,
+              })
+            }
+            placeholder="Content"
             className="border-none outline-none focus-visible:ring-0 focus-visible:ring-offset-0 h-[200px] text-[28px]"
           />
 
@@ -198,7 +211,7 @@ function Feed({ user, profileInfo, allFeedPosts }) {
             </Label>
             <Button
               onClick={handleSaveFeedPost}
-              disabled={formData?.imageURL === "" && formData?.message === ""}
+              disabled={formData?.imageURL === ""}
               className="flex w-40 h-11 items-center justify-center px-5 disabled:opacity-65"
             >
               Post
