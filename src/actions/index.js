@@ -242,3 +242,19 @@ export async function updateFeedPostAction(data, pathToRevalidate) {
 
   revalidatePath(pathToRevalidate);
 }
+
+
+//delete
+export async function deleteFeedPostAction(id) {
+  await connectToDb();
+  try {
+    const result = await Post.findByIdAndDelete(id);
+    if (!result) {
+      throw new Error('Post not found');
+    }
+    revalidatePath(pathToRevalidate); // Optional: Call this if needed to revalidate the path
+    return { success: true, message: 'Post deleted successfully' };
+  } catch (error) {
+    console.error('Failed to delete post:', error);
+  }
+}

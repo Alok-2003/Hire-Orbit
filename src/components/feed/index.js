@@ -5,10 +5,14 @@ import { Button } from "../ui/button";
 import { Dialog, DialogContent } from "../ui/dialog";
 import { Textarea } from "../ui/textarea";
 import { Label } from "../ui/label";
-import { CirclePlus, Heart } from "lucide-react";
+import { CirclePlus, Heart, Trash } from "lucide-react";
 import { Input } from "../ui/input";
 import { createClient } from "@supabase/supabase-js";
-import { createFeedPostAction, updateFeedPostAction } from "@/actions";
+import {
+  createFeedPostAction,
+  updateFeedPostAction,
+  deleteFeedPostAction,
+} from "@/actions";
 
 const supabaseClient = createClient(
   "https://nnlmhyuccbvpycvuvjum.supabase.co",
@@ -42,14 +46,15 @@ function Feed({ user, profileInfo, allFeedPosts }) {
   }
 
   async function handleUploadImageToSupabase() {
-    const sanitizedFileName = imageData?.name.replace(/\s+/g, '_');
+    const sanitizedFileName = imageData?.name.replace(/\s+/g, "_");
     const { data, error } = await supabaseClient.storage
       .from("job-board-public")
       .upload(`/public/${sanitizedFileName}`, imageData, {
         cacheControl: "3600",
         upsert: false,
       });
-console.log(data)
+    console.log(data);
+
     if (data) handleFetchImagePublicUrl(data);
   }
 
@@ -66,6 +71,7 @@ console.log(data)
         heading: formData?.heading,
         content: formData?.content,
         image: formData?.imageURL,
+        createdAt: new Date(), // Add the timestamp here
         likes: [],
       },
       "/feed"
@@ -96,7 +102,23 @@ console.log(data)
     await updateFeedPostAction(getCurrentFeedPostItem, "/feed");
   }
 
-  console.log(formData)
+  async function handleDeleteFeedPost(postId) {
+    await deleteFeedPostAction(postId, "/feed");
+  }
+
+  function formatDate(dateString) {
+    const options = {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    const date = new Date(dateString);
+    return date.toLocaleDateString(undefined, options);
+  }
+  console.log(allFeedPosts);
+
   return (
     <Fragment>
       <div className="mx-auto max-w-7xl">
@@ -138,7 +160,10 @@ console.log(data)
                     <h3 className="mb-6 text-2xl text-gray-900">
                       {feedPostItem?.content}
                     </h3>
-                    <div className="flex gap-5">
+                    <span className="text-gray-500 text-sm">
+                      Posted on {formatDate(feedPostItem?.createdAt)}
+                    </span>
+                    <div className="flex gap-5 items-center mt-4">
                       <Heart
                         size={25}
                         fill={
@@ -152,6 +177,14 @@ console.log(data)
                       <span className="font-semibold text-xl">
                         {feedPostItem?.likes?.length}
                       </span>
+                      {feedPostItem.userId === user?.id && (
+                        <Button
+                          onClick={() => handleDeleteFeedPost(feedPostItem._id)}
+                          className="flex items-center text-red-500 hover:text-red-700"
+                        >
+                          <Trash size={25} />
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>

@@ -13,6 +13,7 @@ const PostSchema = new mongoose.Schema({
       reactorUserName: String,
     },
   ],
+  createdAt: { type: Date, default: Date.now }, 
 });
 
 const Post = mongoose.models.Post || mongoose.model("Post", PostSchema);
