@@ -8,6 +8,7 @@
 - Payment Functionality
 - Responsive for desktop and mobile
 - Added Vercel web analytics
+- Share posts related to tech, visible to the entire Hire Orbit community, including a heading, content, image, and time posted.
 
 ### Candidate Features
 - Create and update profiles with a resume in "Account"
