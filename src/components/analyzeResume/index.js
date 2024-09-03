@@ -74,8 +74,8 @@ export const AnalyzeResume = () => {
 
   return (
     <div className="pt-4 font-sans ">
-      <header className="w-full mx-auto bg-white shadow-md rounded-lg p-6">
-        <h1 className="text-4xl font-bold text-center text-blue-600 mb-6">Hire-Orbit Resume Analyzer</h1>
+      <header className="w-full mx-auto dark:bg-white bg-black/80 shadow-md rounded-lg p-6">
+        <h1 className="text-4xl font-bold text-center text-blue-600  mb-6">Hire-Orbit Resume Analyzer</h1>
         <div className="mb-6">
           <input
             type="file"

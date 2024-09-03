@@ -107,14 +107,14 @@ export default function Header({ user, profileInfo }) {
         <Link className="hidden lg:flex mr-6 text-3xl font-bold" href={"/"}>
         <GradualSpacing text="Hire Orbit"/>
         </Link>
-        <nav className="ml-auto hidden lg:flex gap-6 items-center">
+        <nav className="ml-auto hidden lg:flex gap-3 items-center">
           {menuItems.map((menuItem, index) =>
             menuItem.show ? (
               <Link
                 key={index}
                 href={menuItem.path}
                 onClick={() => sessionStorage.removeItem("filterParams")}
-                className="group inline-flex h-9 w-max items-center rounded-md  px-4 py-2 text-sm font-medium"
+                className="group inline-flex h-9 w-max items-center rounded-md  px-4 py-2 text-sm font-medium hover:transition ease-in-out delay-150 duration-300 hover:border-x-2 hover:border-t-2 hover:border-b-4 hover:border-gray-500"
               >
                 {menuItem.label}
               </Link>
