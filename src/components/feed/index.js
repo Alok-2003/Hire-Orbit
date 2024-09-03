@@ -130,7 +130,7 @@ function Feed({ user, profileInfo, allFeedPosts }) {
   return (
     <Fragment>
       <div className="mx-auto max-w-7xl">
-        <div className="flex items-end justify-between dark:border-white border-b pt-2 pb-4 lg:pt-14">
+        <div className="flex items-end justify-between dark:border-white border-b pt-2 pb-4 lg:pt-6">
           <h1 className="dark:text-white text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
             Explore Feed
           </h1>

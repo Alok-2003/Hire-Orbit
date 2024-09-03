@@ -39,6 +39,11 @@ export default function Header({ user, profileInfo }) {
       show: profileInfo?.role === "candidate",
     },
     {
+      label: "Resume Analysis",
+      path: "/analyzer",
+      show: profileInfo?.role === "candidate",
+    },
+    {
       label: "Jobs",
       path: "/jobs",
       show: !!user,
