@@ -18,7 +18,7 @@ export default function CommonForm({
     switch (getCurrentControl.componentType) {
       case "input":
         content = (
-          <div className="relative flex items-center mt-4">
+          <div className=" w-full items-center mt-4">
             <Input
               type="text"
               disabled={getCurrentControl.disabled}
@@ -43,9 +43,9 @@ export default function CommonForm({
         content = (
           <Label
             for={getCurrentControl.name}
-            className="flex bg-gray-100 dark:bg-black items-center px-3 py-3 mx-auto text-centre mt-6 border-2 border-dashed  rounded-lg cursor-pointer"
+            className="w-full flex bg-gray-100 dark:bg-black items-center px-3 py-2 mx-auto text-centre mt-4 border-2 border-dashed  rounded-lg cursor-pointer"
           >
-            <h2>{getCurrentControl.label}</h2>
+            <h2 className="mr-2" >{getCurrentControl.label}</h2>
             <Input
               onChange={handleFileChange}
               id={getCurrentControl.name}
@@ -57,7 +57,7 @@ export default function CommonForm({
 
       default:
         content = (
-          <div className="relative felx items-center mt-8">
+          <div className="relative flex items-center mt-8">
             <Input
               type="text"
               disabled={getCurrentControl.disabled}
@@ -81,12 +81,12 @@ export default function CommonForm({
   }
 
   return (
-    <form action={action}>
+    <form action={action} className="grid grid-cols-2 gap-2 gap-x-4 w-full" >
       {formControls.map((control) => renderInputByComponentType(control))}
-      <div className="mt-6 w-full">
+      <div className="mt-4 grid grid-cols-subgrid  col-span-2 ">
         <Button
           type={btnType || "submit"}
-          className="disabled:opacity-60 flex h-11 items-center justify-center px-5"
+          className="disabled:opacity-60 p-6  flex h-11 items-center justify-center "
           disabled={isBtnDisabled}
         >
           {buttonText}
