@@ -1,11 +1,10 @@
 import { fetchProfileAction } from "@/actions";
 import HomepageButtonControls from "@/components/homepage-button-controls";
-import { Button } from "@/components/ui/button";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { Fragment } from "react";
-import IconCloud from "@/components/magicui/icon-cloud";
 import TypingAnimation from "@/components/magicui/typing-animation";
+import { IconCloud } from "@/components/magicui/icon-cloud";
 
 async function Home() {
   const user = await currentUser();
@@ -65,7 +64,9 @@ async function Home() {
     "godrej",
     "larsen-toubro",
   ];
-
+  const images = slugs.map(
+    (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`,
+  );
   return (
     <Fragment>
       <section className="relative w-full h-full min-h-full ">
@@ -101,7 +102,7 @@ async function Home() {
               </div>
             </section>
             <section className="relative w-full lg:w-[50%] flex items-center justify-end bg-re">
-              <IconCloud iconSlugs={slugs} />
+              <IconCloud images={images}  />
             </section>
           </div>
         </div>
